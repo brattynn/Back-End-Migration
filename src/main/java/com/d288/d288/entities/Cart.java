@@ -3,6 +3,7 @@ package com.d288.d288.entities;
 import com.d288.d288.enums.StatusType;
 import jakarta.persistence.*;
 import lombok.Getter;
+import lombok.NoArgsConstructor;
 import lombok.Setter;
 import org.hibernate.annotations.CreationTimestamp;
 import org.hibernate.annotations.UpdateTimestamp;
@@ -15,6 +16,7 @@ import java.util.Set;
 @Table(name = "carts")
 @Getter
 @Setter
+@NoArgsConstructor
 public class Cart {
 
 
@@ -44,7 +46,7 @@ public class Cart {
     private Date last_update;
 
     @ManyToOne
-    JoinColumn(name = "customer_id", nullable = false)
+    JoinColumn(name = "customer_id")
     private Customer customer;
 
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "cart")
