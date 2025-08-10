@@ -58,8 +58,24 @@ Submit a copy of the git repository URL and a copy of the repository branch hist
 ---
 
 ### **D. Entities Package**
-**Requirements:** 
+**Requirements:** Write code for the entities package that includes entity classes and the enum designed to match the UML diagram
 **Notes:** 
+
+- **File:** `/src/main/java/com/d288/d288/entities/Cart.java`
+- **File:** `/src/main/java/com/d288/d288/entities/CartItem.java`
+- **File:** `/src/main/java/com/d288/d288/entities/Country.java`
+- **File:** `/src/main/java/com/d288/d288/entities/Customer.java`
+- **File:** `/src/main/java/com/d288/d288/entities/Division.java`
+- **File:** `/src/main/java/com/d288/d288/entities/Excursion.java`
+- **File:** `/src/main/java/com/d288/d288/entities/Vacation.java`
+- **File:** `/src/main/java/com/d288/d288/enums/StatusType.java`
+- **Change:** Implemented all entity and enumeration classes for the backend data model. Added 7 entity classes with appropriate fields, JPA annotations, and relationships (One-to-Many, Many-to-One, and Many-to-Many). Also created a StatusType enumeration with predefined order states. These changes establish the core database mapping layer for the application.\
+
+
+---
+### **E. Repositories Package**
+**Requirements:** 
+**Notes:**
 
 - **File:** `file location`
 - **Line:**

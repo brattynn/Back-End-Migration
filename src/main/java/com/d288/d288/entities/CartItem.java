@@ -7,6 +7,7 @@ import org.hibernate.annotations.CreationTimestamp;
 import org.hibernate.annotations.UpdateTimestamp;
 
 import java.util.Date;
+import java.util.Set;
 
 @Entity
 @Table(name="cart_items")
@@ -35,6 +36,8 @@ public class CartItem {
     @JoinColumn(name="vacation_id", nullable = false)
     private Vacation vacation;  //Info from vacations table. This needs to have a UML relationship.
 
-    @ManyToMany
+   @ManyToMany
+   @JoinTable(name = "excursion_cartitem",  joinColumns = @JoinColumn(name = "cart_item_id", nullable = false),
+                                            inverseJoinColumns = @JoinColumn(name = "excursion_id", nullable = false))
     private Set<Excursion> excursions;
 }

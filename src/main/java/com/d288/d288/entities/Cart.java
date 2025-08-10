@@ -16,9 +16,7 @@ import java.util.Set;
 @Table(name = "carts")
 @Getter
 @Setter
-@NoArgsConstructor
 public class Cart {
-
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -35,6 +33,7 @@ public class Cart {
     private int party_size;
 
     @Column(name = "status")
+    @Enumerated(EnumType.STRING)
     private StatusType status;
 
     @Column(name = "create_date")
@@ -46,7 +45,7 @@ public class Cart {
     private Date last_update;
 
     @ManyToOne
-    JoinColumn(name = "customer_id")
+    @JoinColumn(name = "customer_id")
     private Customer customer;
 
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "cart")
