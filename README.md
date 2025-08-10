@@ -15,7 +15,6 @@ This project is a Spring Boot-based back-end application developed as part of a 
 Each section below details the changes made to fulfill the project requirements. Each task includes the file name, line number(s), and a description of the implementation.
 
 ---
-
 ### **A. Spring Initializr**
 **Requirement:** Create a new Java project using Spring Initializr, with each of the following dependencies: Spring Data JPA (spring-boot starter-data-jpa), Rest Repositories (spring-boot-starter-data-rest), MySQL Driver (mysql-connector-java), Lombok\
 **Note:** Since the application properties will be empty, you will need to copy over the supplied application properties.\
@@ -74,9 +73,23 @@ Submit a copy of the git repository URL and a copy of the repository branch hist
 
 ---
 ### **E. Repositories Package**
-**Requirements:** 
-**Notes:**
+**Requirements:**  Write code for the dao package that includes repository interfaces for the entities that extend JpaRepository, and add cross-origin support.\
+
+- **File:** `/src/main/java/com/d288/d288/dao/CartItemRepository.java`
+- **File:** `/src/main/java/com/d288/d288/dao/CartRepository.java`
+- **File:** `/src/main/java/com/d288/d288/dao/CountryRepository.java`
+- **File:** `/src/main/java/com/d288/d288/dao/CustomerRepository.java`
+- **File:** `/src/main/java/com/d288/d288/dao/DivisionRepository.java`
+- **File:** `/src/main/java/com/d288/d288/dao/ExcursionRepository.java`
+- **File:** `/src/main/java/com/d288/d288/dao/VacationRepository.java`
+- **Change:** Added repository interfaces for all entity classes, each extending JpaRepository to provide built-in CRUD operations and query capabilities. Applied @CrossOrigin to enable CORS for integration with the Angular front-end.\
+
+
+---
+### **F. Services Package**
+**Requirement:** 
+**Note:** 
 
 - **File:** `file location`
-- **Line:**
-- **Change:**
+- **Lines:** 
+- **Change:** 
