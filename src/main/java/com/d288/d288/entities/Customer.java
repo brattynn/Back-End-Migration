@@ -11,31 +11,31 @@ import java.util.Set;
 
 @Entity
 @Table(name = "customers")
-@Getter
-@Setter
+//@Getter
+//@Setter
 public class Customer {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "customer_id")
+    @Column(name = "customer_id", nullable = false)
     private Long id;
 
-    @Column(name = "customer_first_name")
+    @Column(name = "customer_first_name", nullable = false)
     private String firstName;
 
-    @Column(name = "customer_last_name")
+    @Column(name = "customer_last_name", nullable = false)
     private String lastName;
 
-    @Column(name = "address")
+    @Column(name = "address", nullable = false)
     private String address;
 
-    @Column(name = "postal_code")
+    @Column(name = "postal_code", nullable = false)
     private String postal_code;
 
-    @Column(name = "phone")
+    @Column(name = "phone", nullable = false)
     private String phone;
 
-    @Column(name = "create_date")
+    @Column(name = "create_date", updatable = false)
     @CreationTimestamp
     private Date create_date;
 
@@ -44,9 +44,89 @@ public class Customer {
     private Date last_update;
 
     @ManyToOne
-    @JoinColumn(name = "division_id")
+    @JoinColumn(name = "division_id", nullable = false, updatable = false)
     private Division division;
 
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "customer")
     private Set<Cart> carts;
+
+    public Long getId() {
+        return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
+    }
+
+    public String getFirstName() {
+        return firstName;
+    }
+
+    public void setFirstName(String firstName) {
+        this.firstName = firstName;
+    }
+
+    public String getLastName() {
+        return lastName;
+    }
+
+    public void setLastName(String lastName) {
+        this.lastName = lastName;
+    }
+
+    public String getAddress() {
+        return address;
+    }
+
+    public void setAddress(String address) {
+        this.address = address;
+    }
+
+    public String getPostal_code() {
+        return postal_code;
+    }
+
+    public void setPostal_code(String postal_code) {
+        this.postal_code = postal_code;
+    }
+
+    public String getPhone() {
+        return phone;
+    }
+
+    public void setPhone(String phone) {
+        this.phone = phone;
+    }
+
+    public Date getCreate_date() {
+        return create_date;
+    }
+
+    public void setCreate_date(Date create_date) {
+        this.create_date = create_date;
+    }
+
+    public Date getLast_update() {
+        return last_update;
+    }
+
+    public void setLast_update(Date last_update) {
+        this.last_update = last_update;
+    }
+
+    public Division getDivision() {
+        return division;
+    }
+
+    public void setDivision(Division division) {
+        this.division = division;
+    }
+
+    public Set<Cart> getCarts() {
+        return carts;
+    }
+
+    public void setCarts(Set<Cart> carts) {
+        this.carts = carts;
+    }
 }

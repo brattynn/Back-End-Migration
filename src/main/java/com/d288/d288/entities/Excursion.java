@@ -12,25 +12,25 @@ import java.util.Set;
 
 @Entity
 @Table(name = "excursions")
-@Getter
-@Setter
+//@Getter
+//@Setter
 public class Excursion {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "excursion_id")
+    @Column(name = "excursion_id", nullable = false)
     private Long id;
 
-    @Column(name = "excursion_title")
+    @Column(name = "excursion_title", nullable = false)
     private String excursion_title;
 
-    @Column(name = "excursion_price")
+    @Column(name = "excursion_price", nullable = false)
     private BigDecimal excursion_price;
 
-    @Column(name = "image_url")
+    @Column(name = "image_url", nullable = false)
     private String image_URL;
 
-    @Column(name = "create_date")
+    @Column(name = "create_date", updatable = false)
     @CreationTimestamp
     private Date create_date;
 
@@ -40,8 +40,73 @@ public class Excursion {
 
     @ManyToOne
     @JoinColumn(name = "vacation_id", nullable = false)
-    private Vacation vacation;
+    private Vacation vacation_title;
 
-    @ManyToMany(mappedBy = "excursions")
-    private Set<CartItem> cartitems;
+    @ManyToMany
+    @JoinTable(name = "excursion_cartitem", joinColumns = @JoinColumn(name = "excursion_id", nullable = false), inverseJoinColumns = @JoinColumn(name = "cart_item_id", nullable = false))
+    private Set<CartItem> cartItems;
+
+    public Long getId() {
+        return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
+    }
+
+    public String getExcursion_title() {
+        return excursion_title;
+    }
+
+    public void setExcursion_title(String excursion_title) {
+        this.excursion_title = excursion_title;
+    }
+
+    public BigDecimal getExcursion_price() {
+        return excursion_price;
+    }
+
+    public void setExcursion_price(BigDecimal excursion_price) {
+        this.excursion_price = excursion_price;
+    }
+
+    public String getImage_URL() {
+        return image_URL;
+    }
+
+    public void setImage_URL(String image_URL) {
+        this.image_URL = image_URL;
+    }
+
+    public Date getCreate_date() {
+        return create_date;
+    }
+
+    public void setCreate_date(Date create_date) {
+        this.create_date = create_date;
+    }
+
+    public Date getLast_update() {
+        return last_update;
+    }
+
+    public void setLast_update(Date last_update) {
+        this.last_update = last_update;
+    }
+
+    public Vacation getVacation_title() {
+        return vacation_title;
+    }
+
+    public void setVacation_title(Vacation vacation_title) {
+        this.vacation_title = vacation_title;
+    }
+
+    public Set<CartItem> getCartItems() {
+        return cartItems;
+    }
+
+    public void setCartItems(Set<CartItem> cartItems) {
+        this.cartItems = cartItems;
+    }
 }
