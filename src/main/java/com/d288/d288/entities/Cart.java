@@ -121,4 +121,7 @@ public class Cart {
     public void setCartItems(Set<CartItem> cartItems) {
         this.cartItems = cartItems;
     }
+
+    public void add(CartItem item) {
+    }
 }
