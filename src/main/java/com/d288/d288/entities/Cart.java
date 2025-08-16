@@ -50,6 +50,7 @@ public class Cart {
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "cart")
     private Set<CartItem> cartItems;
 
+    //Getters and Setters
     public Long getId() {
         return id;
     }

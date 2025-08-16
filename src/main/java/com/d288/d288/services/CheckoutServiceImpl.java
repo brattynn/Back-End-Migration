@@ -1,10 +1,10 @@
 package com.d288.d288.services;
 
-import com.d288.d288.dao.CartItemRepository;
-import com.d288.d288.dao.CartRepository;
+import com.d288.d288.dao.*;
 import com.d288.d288.entities.Cart;
 import com.d288.d288.entities.CartItem;
 import com.d288.d288.entities.Customer;
+import com.d288.d288.enums.StatusType;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -33,22 +33,25 @@ public class CheckoutServiceImpl implements CheckoutService {
 
         Cart cart = purchase.getCart();
         Customer customer = purchase.getCustomer();
-
-        //Generate an order tracking number
-        String orderTrackingNumber = generateOrderTrackingNumber();
-        purchase.getCart().setOrderTrackingNumber(orderTrackingNumber);
-
-        //Get items from the purchase
         Set<CartItem> cartItems = purchase.getCartItems();
-        cartItems.forEach(item -> {item.setCart(cart); cart.add(item);});
+        String orderTrackingNumber = generateOrderTrackingNumber();
 
-        //save to database
+        cartItems.forEach(item -> {
+            item.setCart(cart);
+            cart.add(item);
+        });
+
+        cart.setOrderTrackingNumber(orderTrackingNumber);
+        cart.setStatus(StatusType.ordered);
+        customer.add(cart);
+
         cartRepository.save(cart);
 
         return new PurchaseResponse(orderTrackingNumber);
     }
 
     private String generateOrderTrackingNumber() {
+
         return UUID.randomUUID().toString();
     }
 }
