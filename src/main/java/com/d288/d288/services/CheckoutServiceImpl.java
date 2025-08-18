@@ -15,12 +15,10 @@ import java.util.UUID;
 @Service
 public class CheckoutServiceImpl implements CheckoutService {
 
-    @Autowired
     private CartRepository cartRepository;
-
-    @Autowired
     private CartItemRepository cartItemRepository;
 
+    @Autowired
     public CheckoutServiceImpl(CartRepository cartRepository, CartItemRepository cartItemRepository) {
         this.cartRepository = cartRepository;
         this.cartItemRepository = cartItemRepository;
@@ -31,27 +29,33 @@ public class CheckoutServiceImpl implements CheckoutService {
     @Transactional
     public PurchaseResponse placeOrder(Purchase purchase) {
 
+        //retrieve cart
         Cart cart = purchase.getCart();
         Customer customer = purchase.getCustomer();
-        Set<CartItem> cartItems = purchase.getCartItems();
-        String orderTrackingNumber = generateOrderTrackingNumber();
 
+        //generate tracking number
+        String orderTrackingNumber = generateOrderTrackingNumber();
+        cart.setOrderTrackingNumber(orderTrackingNumber);
+
+        //set cart items
+        Set<CartItem> cartItems = purchase.getCartItems();
         cartItems.forEach(item -> {
             item.setCart(cart);
             cart.add(item);
         });
 
-        cart.setOrderTrackingNumber(orderTrackingNumber);
+        //save cart
         cart.setStatus(StatusType.ordered);
-        customer.add(cart);
-
         cartRepository.save(cart);
 
-        return new PurchaseResponse(orderTrackingNumber);
+        if (cartItems == null || cartItems.isEmpty()) {
+            return new PurchaseResponse("Cart is empty");
+        } else {
+            return new PurchaseResponse(orderTrackingNumber);
+        }
     }
 
     private String generateOrderTrackingNumber() {
-
         return UUID.randomUUID().toString();
     }
 }
