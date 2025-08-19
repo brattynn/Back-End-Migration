@@ -7,6 +7,7 @@ import org.hibernate.annotations.CreationTimestamp;
 import org.hibernate.annotations.UpdateTimestamp;
 
 import java.util.Date;
+import java.util.HashSet;
 import java.util.Set;
 
 @Entity
@@ -48,10 +49,13 @@ public class Customer {
     private Division division;
 
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "customer")
-    private Set<Cart> carts;
+    private Set<Cart> carts = new HashSet<>();
 
     //No arg constructor
     public Customer() {}
+
+    //Arg constructor
+
 
     //Getters and Setters
     public Long getId() {
@@ -135,5 +139,6 @@ public class Customer {
     }
 
     public void add(Cart cart) {
+        carts.add(cart);
     }
 }
