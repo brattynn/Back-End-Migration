@@ -50,6 +50,9 @@ public class Customer {
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "customer")
     private Set<Cart> carts;
 
+    //No arg constructor
+    public Customer() {}
+
     //Getters and Setters
     public Long getId() {
         return id;
