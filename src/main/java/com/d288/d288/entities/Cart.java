@@ -8,13 +8,12 @@ import org.hibernate.annotations.CreationTimestamp;
 import org.hibernate.annotations.UpdateTimestamp;
 
 import java.math.BigDecimal;
-import java.util.Date;
-import java.util.Set;
+import java.util.*;
 
 @Entity
 @Table(name = "carts")
-@Getter
-@Setter
+//@Getter
+//@Setter
 public class Cart {
 
     @Id
@@ -47,8 +46,8 @@ public class Cart {
     @JoinColumn(name = "customer_id", nullable = false)
     private Customer customer;
 
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "cart")
-    private Set<CartItem> cartItems;
+    @OneToMany(mappedBy = "cart", cascade = CascadeType.ALL, orphanRemoval = true, fetch = FetchType.LAZY)
+    private Set<CartItem> cartItems = new HashSet<>();
 
     //Getters and Setters
     public Long getId() {
@@ -123,6 +122,16 @@ public class Cart {
         this.cartItems = cartItems;
     }
 
+    //populate the CartItems repository
     public void add(CartItem item) {
+        if (item == null) return;
+        cartItems.add(item);
+        item.setCart(this);     // <— owning side gets set here
+    }
+
+    public void remove(CartItem item) {
+        if (item == null) return;
+        cartItems.remove(item);
+        item.setCart(null);
     }
 }

@@ -1,14 +1,13 @@
 package com.d288.d288.services;
 
 import com.d288.d288.dao.*;
-import com.d288.d288.entities.Cart;
-import com.d288.d288.entities.CartItem;
-import com.d288.d288.entities.Customer;
+import com.d288.d288.entities.*;
 import com.d288.d288.enums.StatusType;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.util.Optional;
 import java.util.Set;
 import java.util.UUID;
 
@@ -47,6 +46,8 @@ public class CheckoutServiceImpl implements CheckoutService {
         //save cart
         cart.setStatus(StatusType.ordered);
         cartRepository.save(cart);
+
+
 
         if (cartItems == null || cartItems.isEmpty()) {
             return new PurchaseResponse("Cart is empty");

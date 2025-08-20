@@ -26,6 +26,7 @@ public class BootStrapData implements CommandLineRunner {
     @Override
     public void run(String... args) throws Exception {
 
+        if (customerRepository.count() == 1) {
             Customer matt = new Customer();
             matt.setFirstName("Matthew");
             matt.setLastName("Heafy");
@@ -73,5 +74,8 @@ public class BootStrapData implements CommandLineRunner {
             customerRepository.save(jason);
 
             System.out.println("5 additional customers added to database");
+        } else {
+            System.out.println("Customer repository has more than 1 customer currently.");
+        }
     }
 }
