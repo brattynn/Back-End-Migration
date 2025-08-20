@@ -55,7 +55,7 @@ public class BootStrapData implements CommandLineRunner {
             paulo.setFirstName("Paulo");
             paulo.setLastName("Gregoletto");
             paulo.setAddress("456 Bass Court");
-            paulo.setPhone("44-22-3456");
+            paulo.setPhone("442-222-3456");
             paulo.setPostal_code("45678");
             paulo.setDivision(divisionRepository.findAll().get(4));
 
