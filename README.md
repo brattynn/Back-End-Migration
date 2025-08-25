@@ -37,14 +37,14 @@ The application is organized into well-structured packages following industry st
 ---
 
 ## 🔑 Features Implemented
-- ✅ Initialized a Spring Boot project with required dependencies (JPA, REST, MySQL, Lombok)  
-- ✅ Created entities and enum from a provided UML diagram  
-- ✅ Built JPA repositories with cross-origin support for frontend integration  
-- ✅ Implemented checkout service with order placement, purchase data objects, and tracking number generation  
-- ✅ Added input validation to support Angular front-end requirements  
-- ✅ Developed a REST controller with POST mapping for checkout/order placement  
-- ✅ Seeded the database with **five sample customers** programmatically  
-- ✅ Successfully tested integration by placing an order for a vacation with excursions, verifying results in MySQL Workbench  
+-  Initialized a Spring Boot project with required dependencies (JPA, REST, MySQL, Lombok)  
+-  Created entities and enum from a provided UML diagram  
+-  Built JPA repositories with cross-origin support for frontend integration  
+-  Implemented checkout service with order placement, purchase data objects, and tracking number generation  
+-  Added input validation to support Angular front-end requirements  
+-  Developed a REST controller with POST mapping for checkout/order placement  
+-  Seeded the database with **five sample customers** programmatically  
+-  Successfully tested integration by placing an order for a vacation with excursions, verifying results in MySQL Workbench  
 
 ---
 
